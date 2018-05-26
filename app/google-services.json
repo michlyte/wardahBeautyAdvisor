@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "896416165552",
+    "firebase_url": "https://wardah-110df.firebaseio.com",
+    "project_id": "wardah-110df",
+    "storage_bucket": "wardah-110df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896416165552:android:c3001628700fe4b0",
+        "android_client_info": {
+          "package_name": "com.gghouse.wardah.wardahba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "896416165552-mqcm5e4vh5pioni8umns6cii5jv1snec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAusRVa-g0v7t6MdcQNaehYBWfVdBagvTY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
