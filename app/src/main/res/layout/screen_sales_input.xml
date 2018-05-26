@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_SSI_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/test_top_containter_height"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:id="@+id/ll_SSI_overlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:background="@color/colorBlackOverlay"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <Button
+            android:id="@+id/b_SSI_startTest"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_input_sales"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</FrameLayout>

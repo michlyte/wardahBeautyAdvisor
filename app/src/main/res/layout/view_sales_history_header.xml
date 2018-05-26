@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:layout_marginLeft="@dimen/highlight_space_min"
+    android:layout_marginRight="@dimen/highlight_space_min"
+    android:layout_marginTop="@dimen/highlight_space"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/highlight_size"
+        android:layout_weight="1"
+        android:background="@color/colorHistoryHeader5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_average"
+            style="@style/WBA.TextView.Highlight.Value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/placeholder_average" />
+
+        <TextView
+            style="@style/WBA.TextView.Highlight.Title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/title_average" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="@dimen/highlight_space_min"
+        android:layout_height="@dimen/sales_header_space" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/highlight_size"
+        android:layout_weight="1"
+        android:background="@color/colorHistoryHeader6"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_count_by_month"
+            style="@style/WBA.TextView.Highlight.Value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/placeholder_count_by_month" />
+
+        <TextView
+            style="@style/WBA.TextView.Highlight.Title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/title_this_month" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="@dimen/highlight_space_min"
+        android:layout_height="@dimen/sales_header_space" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/highlight_size"
+        android:layout_weight="1"
+        android:background="@color/colorHistoryHeader7"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_count"
+            style="@style/WBA.TextView.Highlight.Value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/placeholder_count" />
+
+        <TextView
+            style="@style/WBA.TextView.Highlight.Title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/title_total" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="@dimen/highlight_space_min"
+        android:layout_height="@dimen/sales_header_space" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/highlight_size"
+        android:layout_weight="1"
+        android:background="@color/colorHistoryHeader8"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_highest_per_month"
+            style="@style/WBA.TextView.Highlight.Value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/placeholder_count" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top|center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/WBA.TextView.Highlight.Title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_highest" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

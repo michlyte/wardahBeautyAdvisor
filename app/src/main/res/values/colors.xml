@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <color name="colorPrimary">#58b6c0</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <!--<color name="colorAccent">#FF4081</color>-->
+    <color name="colorAccent">#735a36</color>
+    <color name="colorAccentOverlay">#80735a36</color>
+
+    <color name="colorWardahGreen">#6acccb</color>
+    <color name="colorWardahBlack">#000000</color>
+    <color name="colorWardahLine">#aaa</color>
+    <color name="colorBlackOverlay">#80000000</color>
+    <color name="colorLoginBlackOverlay">#33000000</color>
+
+    <color name="colorHistoryHeader1">#594F4F</color>
+    <color name="colorHistoryHeader2">#547980</color>
+    <color name="colorHistoryHeader3">#45ADA8</color>
+    <color name="colorHistoryHeader4">#9DE0AD</color>
+    <color name="colorHistoryHeader5">#811337</color>
+    <color name="colorHistoryHeader6">#c4201e</color>
+    <color name="colorHistoryHeader7">#f5732c</color>
+    <color name="colorHistoryHeader8">#ffb716</color>
+
+    <color name="colorEditable">#3358b6c0</color>
+
+</resources>
+
+    <!--100% — FF-->
+    <!--95% — F2-->
+    <!--90% — E6-->
+    <!--85% — D9-->
+    <!--80% — CC-->
+    <!--75% — BF-->
+    <!--70% — B3-->
+    <!--65% — A6-->
+    <!--60% — 99-->
+    <!--55% — 8C-->
+    <!--50% — 80-->
+    <!--45% — 73-->
+    <!--40% — 66-->
+    <!--35% — 59-->
+    <!--30% — 4D-->
+    <!--25% — 40-->
+    <!--20% — 33-->
+    <!--15% — 26-->
+    <!--10% — 1A-->
+    <!--5% — 0D-->
+    <!--0% — 00-->

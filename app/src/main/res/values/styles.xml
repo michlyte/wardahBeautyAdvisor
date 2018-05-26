@@ -1,0 +1,222 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/activity_splash</item>
+    </style>
+
+    <style name="WBA" />
+
+    <style name="WBA.TextView" parent="android:Widget.TextView" />ac
+
+    <style name="WBA.TextView.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="WBA.TextView.TitleTest">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="WBA.TextView.TitleHeaderSection">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="WBA.TextView.MoreHeaderSection">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="WBA.TextView.PostedDate">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
+    <style name="WBA.TextView.More">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@android:color/holo_blue_dark</item>
+    </style>
+
+    <style name="WBA.TextView.Header">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="WBA.TextView.Score">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <!--<item name="android:textColor">@color/colorPrimary</item>-->
+    </style>
+
+    <style name="WBA.TextView.Question">
+        <!--<item name="android:textColor">@color/colorWardahBlack</item>-->
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="WBA.TextView.Description">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="WBA.TextView.HighlightValue">
+        <item name="android:textSize">22sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WBA.TextView.Highlight">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="WBA.TextView.Highlight.Value">
+        <item name="android:textSize">26sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="WBA.TextView.Highlight.Title">
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WBA.TextView.Highlight.Subtitle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">8sp</item>
+    </style>
+
+    <style name="WBA.TextView.Profile">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="WBA.TextView.Profile.Title">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="WBA.TextView.Profile.Delimiter">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:text">:</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginRight">7dp</item>
+        <item name="android:layout_marginLeft">7dp</item>
+    </style>
+
+    <style name="WBA.TextView.Profile.Content">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:gravity">left</item>
+    </style>
+
+    <style name="WBA.TextView.Empty">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="WBA.TextView.ChangePassword.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="WBA.TextView.SalesInput" />
+
+    <style name="WBA.TextView.SalesInput.SectionHeader">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="WBA.TextView.SalesInput.TitleDone">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="WBA.TextView.ChangePassword">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="WBA.EditText" />
+
+    <style name="WBA.EditText.ChangePassword">
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+
+    <style name="WBA.RadioButton" parent="android:Widget.CompoundButton.RadioButton" />
+
+    <style name="WBA.Button">
+        <item name="android:minHeight">0dp</item>
+    </style>
+
+    <style name="WBA.Button.Theme" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="WBA.Button.SignIn">
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+</resources>

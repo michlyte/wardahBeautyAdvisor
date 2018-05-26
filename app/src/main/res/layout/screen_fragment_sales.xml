@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="com.gghouse.wardah.wardahba.screen.main_fragment.TestFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gghouse.wardah.wardahba.screen.main_fragment.SalesFragment">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/fl_input_sales"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sales_top_containter_height"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:background="@color/colorAccentOverlay"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
+
+                    <Button
+                        android:id="@+id/b_input_sales"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/action_input_sales"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/fl_sales_done"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sales_top_containter_height"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_image_done"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/colorAccentOverlay"
+                    android:gravity="center"
+                    android:padding="10dp">
+
+                    <TextView
+                        style="@style/WBA.TextView.SalesInput.TitleDone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/message_sales_input_today_done" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_section_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/WBA.TextView.TitleHeaderSection"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/title_sales_history" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/tv_more"
+                        style="@style/WBA.TextView.MoreHeaderSection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/prompt_selengkapnya" />
+
+                    <ImageView
+                        android:id="@+id/iv_more"
+                        android:layout_width="@dimen/test_right_arrow_size"
+                        android:layout_height="@dimen/test_right_arrow_size"
+                        android:src="@drawable/ic_right_arrow" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/view_line" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                tools:listitem="@layout/view_sales" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

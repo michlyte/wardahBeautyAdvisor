@@ -1,0 +1,34 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="test_image_width">60dp</dimen>
+    <dimen name="test_image_height">60dp</dimen>
+    <dimen name="test_score_width">60dp</dimen>
+    <dimen name="test_score_height">60dp</dimen>
+    <dimen name="test_top_containter_height">180dp</dimen>
+    <dimen name="test_right_arrow_size">15dp</dimen>
+    <dimen name="test_right_margin">20dp</dimen>
+    <dimen name="test_left_margin">20dp</dimen>
+    <dimen name="test_horizontal_margin">10dp</dimen>
+    <dimen name="test_top_container_bottom_margin">10dp</dimen>
+
+    <dimen name="sales_image_size">70dp</dimen>
+    <dimen name="sales_qty_size">40dp</dimen>
+    <dimen name="sales_top_containter_height">180dp</dimen>
+    <dimen name="sales_header_space">5dp</dimen>
+
+    <dimen name="notif_vertical_margin">10dp</dimen>
+    <dimen name="notif_horizontal_margin">10dp</dimen>
+    <dimen name="notif_icon_width">40dp</dimen>
+    <dimen name="notif_icon_height">40dp</dimen>
+    <dimen name="notif_icon_space">20dp</dimen>
+
+    <dimen name="highlight_size">80dp</dimen>
+    <dimen name="highlight_space">10dp</dimen>
+    <dimen name="highlight_space_min">3dp</dimen>
+</resources>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="@dimen/highlight_space"
+    android:layout_marginRight="@dimen/highlight_space"
+    android:layout_marginTop="@dimen/highlight_space"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/highlight_size"
+        android:layout_weight="1"
+        android:background="@color/colorHistoryHeader1">
+
+        <TextView
+            android:id="@+id/tv_average"
+            style="@style/WBA.TextView.Highlight.Value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:text="@string/placeholder_average" />
+
+        <TextView
+            style="@style/WBA.TextView.Highlight.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:text="@string/title_average" />
+
+    </FrameLayout>
+
+    <Space
+        android:layout_width="@dimen/highlight_space"
+        android:layout_height="@dimen/md_action_corner_radius" />
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/highlight_size"
+        android:layout_weight="1"
+        android:background="@color/colorHistoryHeader2">
+
+        <TextView
+            android:id="@+id/tv_rank"
+            style="@style/WBA.TextView.Highlight.Value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:text="@string/placeholder_rank" />
+
+        <TextView
+            style="@style/WBA.TextView.Highlight.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:text="@string/title_correct_rate" />
+
+    </FrameLayout>
+
+    <Space
+        android:layout_width="@dimen/highlight_space"
+        android:layout_height="@dimen/md_action_corner_radius" />
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/highlight_size"
+        android:layout_weight="1"
+        android:background="@color/colorHistoryHeader3">
+
+        <TextView
+            android:id="@+id/tv_sum_test_taken"
+            style="@style/WBA.TextView.Highlight.Value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:text="@string/placeholder_sum_test_taken" />
+
+        <TextView
+            style="@style/WBA.TextView.Highlight.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:text="@string/title_sum_test_taken" />
+
+    </FrameLayout>
+</LinearLayout>

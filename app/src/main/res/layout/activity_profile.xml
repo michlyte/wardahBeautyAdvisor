@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sales_input"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.gghouse.wardah.wardahba.screen.ProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WBA.TextView.Profile.Title"
+            android:text="@string/prompt_nip" />
+
+        <TextView style="@style/WBA.TextView.Profile.Delimiter" />
+
+        <TextView
+            android:id="@+id/tv_nip"
+            style="@style/WBA.TextView.Profile.Content"
+            android:text="@string/prompt_nip" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WBA.TextView.Profile.Title"
+            android:text="@string/prompt_full_name" />
+
+        <TextView style="@style/WBA.TextView.Profile.Delimiter" />
+
+        <TextView
+            android:id="@+id/tv_full_name"
+            style="@style/WBA.TextView.Profile.Content"
+            android:text="@string/prompt_full_name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WBA.TextView.Profile.Title"
+            android:text="@string/prompt_email" />
+
+        <TextView style="@style/WBA.TextView.Profile.Delimiter" />
+
+        <TextView
+            android:id="@+id/tv_email"
+            style="@style/WBA.TextView.Profile.Content"
+            android:text="@string/prompt_email" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_mobile_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WBA.TextView.Profile.Title"
+            android:text="@string/prompt_mobile_number" />
+
+        <TextView style="@style/WBA.TextView.Profile.Delimiter" />
+
+        <TextView
+            android:id="@+id/tv_mobile_number"
+            style="@style/WBA.TextView.Profile.Content"
+            android:text="@string/prompt_mobile_number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WBA.TextView.Profile.Title"
+            android:text="@string/prompt_first_date_work" />
+
+        <TextView style="@style/WBA.TextView.Profile.Delimiter" />
+
+        <TextView
+            android:id="@+id/tv_first_date_work"
+            style="@style/WBA.TextView.Profile.Content"
+            android:text="@string/prompt_first_date_work" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_position"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WBA.TextView.Profile.Title"
+            android:text="@string/prompt_position" />
+
+        <TextView style="@style/WBA.TextView.Profile.Delimiter" />
+
+        <TextView
+            android:id="@+id/tv_position"
+            style="@style/WBA.TextView.Profile.Content"
+            android:text="@string/prompt_position" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WBA.TextView.Profile.Title"
+            android:text="@string/prompt_location_name" />
+
+        <TextView style="@style/WBA.TextView.Profile.Delimiter" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            style="@style/WBA.TextView.Profile.Content"
+            android:text="@string/prompt_location_name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WBA.TextView.Profile.Title"
+            android:text="@string/prompt_city" />
+
+        <TextView style="@style/WBA.TextView.Profile.Delimiter" />
+
+        <TextView
+            android:id="@+id/tv_city"
+            style="@style/WBA.TextView.Profile.Content"
+            android:text="@string/prompt_city" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WBA.TextView.Profile.Title"
+            android:text="@string/prompt_province" />
+
+        <TextView style="@style/WBA.TextView.Profile.Delimiter" />
+
+        <TextView
+            android:id="@+id/tv_provinve"
+            style="@style/WBA.TextView.Profile.Content"
+            android:text="@string/prompt_province" />
+    </LinearLayout>
+
+</LinearLayout>

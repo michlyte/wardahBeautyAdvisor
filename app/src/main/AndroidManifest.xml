@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gghouse.wardah.wardahba">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-feature android:name="android.hardware.location.gps" />
+
+    <application
+        android:name=".WardahApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- [START fcm_default_icon] -->
+        <!--
+             Set custom default icon. This is used when no icon is set for incoming notification messages.
+             See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+        <!-- [END fcm_default_icon] -->
+
+        <activity
+            android:name=".screen.SplashActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".screen.MainActivity"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".screen.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".screen.TestTakingActivity"
+            android:label="@string/title_activity_test"
+            android:launchMode="singleTop"
+            android:parentActivityName=".screen.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".screen.MainActivity" />
+        </activity>
+        <activity
+            android:name=".screen.TestHistoryActivity"
+            android:label="@string/title_activity_test_history"
+            android:parentActivityName=".screen.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".screen.MainActivity" />
+        </activity>
+        <activity
+            android:name=".screen.SalesInputActivity"
+            android:label="@string/title_activity_sales"
+            android:parentActivityName=".screen.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".screen.MainActivity" />
+        </activity>
+        <activity
+            android:name=".screen.SalesHistoryActivity"
+            android:label="@string/title_activity_sales_history"
+            android:parentActivityName=".screen.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".screen.MainActivity" />
+        </activity>
+        <activity
+            android:name=".screen.QuestionerActivity"
+            android:label="@string/title_activity_questionnnaire" />
+        <activity
+            android:name=".screen.ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".screen.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".screen.MainActivity" />
+        </activity>
+        <activity
+            android:name=".screen.ChangePasswordActivity"
+            android:label="@string/title_activity_change_password"
+            android:parentActivityName=".screen.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".screen.MainActivity" />
+        </activity>
+
+        <!-- <activity -->
+        <!-- android:name=".screen.PictureActivity" -->
+        <!-- android:label="@string/title_activity_picture" -->
+        <!-- android:parentActivityName=".screen.MainActivity"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.support.PARENT_ACTIVITY" -->
+        <!-- android:value=".screen.MainActivity" /> -->
+        <!-- </activity> -->
+
+        <activity
+            android:name=".screen.PictureActivity"
+            android:label="@string/title_activity_picture"
+            android:theme="@style/AppTheme.Dialog" />
+
+        <service android:name=".notification.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".notification.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".screen.event.SelectEventLocationActivity"
+            android:label="@string/title_activity_pin_point_event">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- EVENT -->
+        <activity
+            android:name=".screen.event.CreateEventActivity"
+            android:label="@string/title_activity_create_event">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+    </application>
+
+</manifest>
