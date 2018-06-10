@@ -80,7 +80,7 @@ public class NotifAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.fragment_notif_intragram, parent, false);
+                    .inflate(R.layout.fragment_notif_instagram, parent, false);
             return new NotifViewHolder(view);
         } else if (viewType == VIEW_TYPE_LOADING) {
             View view = LayoutInflater.from(parent.getContext())
@@ -116,6 +116,16 @@ public class NotifAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         notifViewHolder.mIVImage.getLayoutParams().height = getPreferredHeight(notifViewHolder.mItem.getDrawable());
                         Picasso.with(mContext)
                                 .load(notifViewHolder.mItem.getDrawable())
+                                .placeholder(R.drawable.progress_animation)
+                                .error(R.drawable.pic_image_not_found)
+                                .fit()
+                                .centerCrop()
+                                .into(notifViewHolder.mIVImage);
+                    } else if (notifViewHolder.mItem.getFileLocation() != null &&
+                            !notifViewHolder.mItem.getFileLocation().getThumbnailUrl().isEmpty()) {
+                        notifViewHolder.mIVImage.getLayoutParams().height = 500;
+                        Picasso.with(mContext)
+                                .load(WBAUtil.constructImageUrl(notifViewHolder.mItem.getFileLocation().getThumbnailUrl()))
                                 .placeholder(R.drawable.progress_animation)
                                 .error(R.drawable.pic_image_not_found)
                                 .fit()
@@ -222,7 +232,7 @@ public class NotifAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         public final ImageView mIVIcon;
         public final ImageView mIVImage;
         public final TextView mTVTitle;
-//        public final TextView mTVIndicator;
+        //        public final TextView mTVIndicator;
         public final ExpandableTextView mTVDescription;
         public final TextView mTVMore;
         public final TextView mTVDate;

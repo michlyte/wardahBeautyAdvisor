@@ -15,6 +15,7 @@ public interface WBAUser {
     String SP_REG_ID = "SP_REG_ID";
     String SP_LOCATION_ID = "SP_LOCATION_ID";
     String SP_SALES_NEED_REFRESH = "SP_SALES_NEED_REFRESH";
+    String SP_USER_TYPE = "SP_USER_TYPE";
 
     String DUMMY_EMAIL = "mikefla10@gmail.com";
     String DUMMY_FULL_NAME = "Michael Halim";

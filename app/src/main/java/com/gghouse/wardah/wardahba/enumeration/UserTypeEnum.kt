@@ -1,8 +1,8 @@
 package com.gghouse.wardah.wardahba.enumeration
 
-enum class UserTypeEnum(val value: String) {
-    BEAUTY_ADVISER("BA"),
-    BEAUTY_PROMOTER("BP"),
-    BEAUTY_PROMOTER_LEADER("BPL"),
-    FIELD_CONTROLLER("FC")
+enum class UserTypeEnum {
+    BEAUTY_ADVISOR,
+    BEAUTY_PROMOTER,
+    BEAUTY_PROMOTER_LEADER,
+    FIELD_CONTROLLER
 }

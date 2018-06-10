@@ -11,7 +11,8 @@ import com.gghouse.wardah.wardahba.R;
 public enum MainEnum {
     NOTIF(0, "NOTIF", R.string.prompt_notif),
     SALES(1, "PENJUALAN", R.string.prompt_sales),
-    TEST(2, "TES", R.string.prompt_tes);
+    TEST(2, "TES", R.string.prompt_tes),
+    PELANGGAN(3, "PELANGGAN", R.string.prompt_pelanggan);
 
     private Integer id;
     private String title;
@@ -55,4 +56,4 @@ public enum MainEnum {
         }
         return null;
     }
-}
+    }

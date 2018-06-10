@@ -1,6 +1,7 @@
 package com.gghouse.wardah.wardahba.util;
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.gghouse.wardah.wardahba.WardahApp;
 import com.gghouse.wardah.wardahba.model.User;
@@ -18,6 +19,7 @@ import static com.gghouse.wardah.wardahba.common.WBAUser.SP_IS_LOGGED_IN;
 import static com.gghouse.wardah.wardahba.common.WBAUser.SP_LAST_QUESTION_ID;
 import static com.gghouse.wardah.wardahba.common.WBAUser.SP_LOCATION_ID;
 import static com.gghouse.wardah.wardahba.common.WBAUser.SP_SALES_NEED_REFRESH;
+import static com.gghouse.wardah.wardahba.common.WBAUser.SP_USER_TYPE;
 
 /**
  * Created by michaelhalim on 1/25/17.
@@ -54,12 +56,14 @@ public abstract class WBASession {
             prefser.put(SP_EMAIL, user.getEmail());
             prefser.put(SP_ID, user.getId());
             prefser.put(SP_LOCATION_ID, user.getLocation().getId());
+            prefser.put(SP_USER_TYPE, user.getUserType());
 
             WBALogger.log(TAG, SP_FULL_NAME + ": " + user.getFullName());
             WBALogger.log(TAG, SP_LAST_QUESTION_ID + ": " + user.getLastQuestionId());
             WBALogger.log(TAG, SP_EMAIL + ": " + user.getEmail());
             WBALogger.log(TAG, SP_ID + ": " + user.getId());
             WBALogger.log(TAG, SP_LOCATION_ID + ": " + user.getLocation().getId());
+            WBALogger.log(TAG, SP_USER_TYPE + ": " + user.getUserType());
 
             WBALogger.log(LOG_END + methodName + " success.");
         }
@@ -100,6 +104,17 @@ public abstract class WBASession {
             return prefser.get(SP_LOCATION_ID, Long.class, 0L);
         } else {
             WBALogger.log("Error: could not find user location id.");
+            return null;
+        }
+    }
+
+    public static String getUserType() {
+        Prefser prefser = WardahApp.getInstance().getPrefser();
+
+        if (prefser.contains(SP_USER_TYPE)) {
+            return prefser.get(SP_USER_TYPE, String.class, "");
+        } else {
+            WBALogger.error("Could not find user type");
             return null;
         }
     }

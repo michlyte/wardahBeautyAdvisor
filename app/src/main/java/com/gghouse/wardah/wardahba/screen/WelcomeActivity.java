@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.gghouse.wardah.wardahba.screen.bp.BPMainActivity;
 import com.gghouse.wardah.wardahba.util.FileUtil;
 import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.WardahApp;
@@ -241,19 +242,24 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void actionLogin(User user) {
-        WBASession.loggingIn(user);
-
         /*
          * Checking User Type (BA, BP, BP Leader or FC)
          */
         try {
             UserTypeEnum userTypeEnum = UserTypeEnum.valueOf(user.getUserType());
+
+            WBASession.loggingIn(user);
+
             switch (userTypeEnum) {
-                case BEAUTY_ADVISER:
+                case BEAUTY_ADVISOR:
                 case BEAUTY_PROMOTER:
+                    Intent intent = new Intent(getBaseContext(), BPMainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    break;
                 case FIELD_CONTROLLER:
                 case BEAUTY_PROMOTER_LEADER:
-                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    intent = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
                     break;

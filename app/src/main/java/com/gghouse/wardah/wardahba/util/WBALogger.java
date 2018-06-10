@@ -39,4 +39,26 @@ public class WBALogger {
             Log.d(TAG + " [" + c + ":" + lineNumber + "]", log);
         }
     }
+
+    public static void error(String log) {
+        if (LOG_ENABLE) {
+            int lineNumber = Thread.currentThread().getStackTrace()[3].getLineNumber();
+            String className = Thread.currentThread().getStackTrace()[3].getClassName();
+            Log.e(TAG + " [" + className + ":" + lineNumber + "]", log);
+        }
+    }
+
+    public static void error(Class<?> c, String log) {
+        if (LOG_ENABLE) {
+            int lineNumber = Thread.currentThread().getStackTrace()[3].getLineNumber();
+            Log.e(TAG + " [" + c.getName() + ":" + lineNumber + "]", log);
+        }
+    }
+
+    public static void error(String c, String log) {
+        if (LOG_ENABLE) {
+            int lineNumber = Thread.currentThread().getStackTrace()[3].getLineNumber();
+            Log.e(TAG + " [" + c + ":" + lineNumber + "]", log);
+        }
+    }
 }

@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.gghouse.wardah.wardahba.common.WBAProperties;
+import com.gghouse.wardah.wardahba.enumeration.UserTypeEnum;
+import com.gghouse.wardah.wardahba.model.User;
+import com.gghouse.wardah.wardahba.screen.bp.BPMainActivity;
+import com.gghouse.wardah.wardahba.util.WBALogger;
 import com.gghouse.wardah.wardahba.util.WBASession;
 import com.gghouse.wardah.wardahba.webservices.ApiClient;
 
@@ -32,11 +36,24 @@ public class SplashActivity extends Activity {
             public void run() {
                 Intent intent;
                 if (WBASession.isLoggedIn()) {
-                    intent = new Intent(getBaseContext(), MainActivity.class);
+                    try {
+                        UserTypeEnum userTypeEnum = UserTypeEnum.valueOf(WBASession.getUserType());
+                        switch (userTypeEnum) {
+                            case BEAUTY_PROMOTER:
+                                intent = new Intent(getBaseContext(), BPMainActivity.class);
+                                break;
+                            default:
+                                intent = new Intent(getBaseContext(), MainActivity.class);
+                                break;
+                        }
+                        startActivity(intent);
+                    } catch (IllegalArgumentException iae) {
+                        WBALogger.error(this.getClass().getSimpleName(), iae.getMessage());
+                    }
                 } else {
                     intent = new Intent(getBaseContext(), WelcomeActivity.class);
+                    startActivity(intent);
                 }
-                startActivity(intent);
                 finish();
             }
         }, WBAProperties.SPLASH_SCREEN_DELAY);

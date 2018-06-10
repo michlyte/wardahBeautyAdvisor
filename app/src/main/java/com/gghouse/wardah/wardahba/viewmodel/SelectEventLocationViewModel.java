@@ -6,12 +6,12 @@ import android.location.Address;
 
 public class SelectEventLocationViewModel extends ViewModel {
 
-    private MutableLiveData<Address> address;
+    private MutableLiveData<Address> mAddress;
 
     public MutableLiveData<Address> getAddress() {
-        if (address == null) {
-            address = new MutableLiveData<>();
+        if (mAddress == null) {
+            mAddress = new MutableLiveData<>();
         }
-        return address;
+        return mAddress;
     }
 }

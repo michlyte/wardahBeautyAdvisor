@@ -1,4 +1,4 @@
-package com.gghouse.wardah.wardahba.screen;
+package com.gghouse.wardah.wardahba.screen.bp;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,9 +27,13 @@ import com.gghouse.wardah.wardahba.common.WBAProperties;
 import com.gghouse.wardah.wardahba.enumeration.MainEnum;
 import com.gghouse.wardah.wardahba.model.IntentProductHighlight;
 import com.gghouse.wardah.wardahba.model.IntentQuestions;
-import com.gghouse.wardah.wardahba.model.Pelanggan;
+import com.gghouse.wardah.wardahba.screen.ChangePasswordActivity;
+import com.gghouse.wardah.wardahba.screen.ProfileActivity;
+import com.gghouse.wardah.wardahba.screen.QuestionerActivity;
+import com.gghouse.wardah.wardahba.screen.SalesInputActivity;
+import com.gghouse.wardah.wardahba.screen.TestTakingActivity;
+import com.gghouse.wardah.wardahba.screen.WelcomeActivity;
 import com.gghouse.wardah.wardahba.screen.main_fragment.NotifFragment;
-import com.gghouse.wardah.wardahba.screen.main_fragment.PelangganFragment;
 import com.gghouse.wardah.wardahba.screen.main_fragment.SalesFragment;
 import com.gghouse.wardah.wardahba.screen.main_fragment.TestFragment;
 import com.gghouse.wardah.wardahba.util.WBALogger;
@@ -49,9 +53,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class BPMainActivity extends AppCompatActivity {
 
-    public static final String TAG = MainActivity.class.getSimpleName();
+    public static final String TAG = BPMainActivity.class.getSimpleName();
 
     public static final int LOCK_INPUT_SALES = 20;
     public static final int LOCK_QUESTIONER = 21;
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_bpmain);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -172,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            Log.d(TAG, position + "");
             switch (MainEnum.getMainEnumById(position)) {
                 case NOTIF:
                     return NotifFragment.newInstance();
@@ -180,8 +183,6 @@ public class MainActivity extends AppCompatActivity {
                     return TestFragment.newInstance();
                 case SALES:
                     return SalesFragment.newInstance();
-                case PELANGGAN:
-                    return PelangganFragment.newInstance();
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }

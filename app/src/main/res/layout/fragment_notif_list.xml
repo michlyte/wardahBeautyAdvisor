@@ -19,6 +19,6 @@
             android:layout_marginRight="16dp"
             app:layoutManager="LinearLayoutManager"
             tools:context="com.gghouse.wardah.wardahba.screen.main_fragment.NotifFragment"
-            tools:listitem="@layout/fragment_notif_intragram" />
+            tools:listitem="@layout/fragment_notif_instagram" />
     </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>
