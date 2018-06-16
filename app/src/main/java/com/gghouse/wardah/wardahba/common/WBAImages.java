@@ -12,4 +12,6 @@ public interface WBAImages {
 
     int salesInput = R.drawable.pic_sales_input;
     int salesInputDone = R.drawable.pic_sales_input_done;
+
+    int pelangganInput = R.drawable.pic_pelanggan;
 }

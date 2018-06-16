@@ -5,10 +5,10 @@ import com.gghouse.wardah.wardahba.model.Pelanggan;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PelangganSimpleDummy {
+public class PelangganHistoryDummy {
     public static final List<Pelanggan> ITEMS = new ArrayList<Pelanggan>();
 
-    private static final int COUNT = 5;
+    private static final int COUNT = 10;
 
     static {
         for (long i = 0; i < COUNT; i++) {

@@ -6,4 +6,5 @@ package com.gghouse.wardah.wardahba.common;
 
 public interface WBAIntent {
     String NOTIF = "NOTIF";
+    String PELANGGAN = "PELANGGAN";
 }

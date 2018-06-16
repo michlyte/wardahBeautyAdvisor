@@ -34,6 +34,7 @@ import com.gghouse.wardah.wardahba.screen.MainActivity;
 import com.gghouse.wardah.wardahba.screen.TestHistoryActivity;
 import com.gghouse.wardah.wardahba.screen.TestTakingActivity;
 import com.gghouse.wardah.wardahba.screen.adapter.TestAdapter;
+import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WardahTabInterface;
 import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WsMode;
 import com.gghouse.wardah.wardahba.util.WBALogger;
 import com.gghouse.wardah.wardahba.util.WBAPopUp;
@@ -53,7 +54,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TestFragment extends Fragment implements View.OnClickListener {
+public class TestFragment extends Fragment implements WardahTabInterface, View.OnClickListener {
 
     public static final String TAG = TestFragment.class.getSimpleName();
 
@@ -114,7 +115,7 @@ public class TestFragment extends Fragment implements View.OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                ws_testFragment(WsMode.REFRESH);
+                ws(WsMode.REFRESH);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -167,7 +168,7 @@ public class TestFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ws_testFragment(WsMode.REFRESH);
+        ws(WsMode.REFRESH);
     }
 
     @Override
@@ -176,7 +177,7 @@ public class TestFragment extends Fragment implements View.OnClickListener {
 
         if (requestCode == TEST_TAKING_ACTIVITY || requestCode == MainActivity.LOCK_TEST) {
             if (resultCode == Activity.RESULT_OK) {
-                ws_testFragment(WsMode.REFRESH);
+                ws(WsMode.REFRESH);
             }
         }
     }
@@ -357,7 +358,8 @@ public class TestFragment extends Fragment implements View.OnClickListener {
         });
     }
 
-    private void ws_testFragment(WsMode wsMode) {
+    @Override
+    public void ws(WsMode wsMode) {
         initViews();
 
         switch (WBAProperties.mode) {

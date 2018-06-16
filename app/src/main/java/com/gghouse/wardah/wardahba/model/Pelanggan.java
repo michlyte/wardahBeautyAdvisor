@@ -2,7 +2,7 @@ package com.gghouse.wardah.wardahba.model;
 
 import java.io.Serializable;
 
-public class Pelanggan implements Serializable {
+public class Pelanggan extends WardahModel implements Serializable {
     private Long id;
     private String name;
     private String email;

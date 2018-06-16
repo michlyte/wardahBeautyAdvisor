@@ -13,6 +13,8 @@
     <string name="title_activity_picture">Gambar</string>
     <string name="title_activity_pin_point_event">Select Event Location</string>
     <string name="title_activity_create_event">Create Event</string>
+    <string name="title_activity_riwayat_pelanggan">Riwayat Pelanggan</string>
+    <string name="title_activity_input_pelanggan">Input Pelanggan</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_logout">Keluar</string>
@@ -61,6 +63,7 @@
     <string name="prompt_save">Save</string>
     <string name="prompt_simpan">Simpan</string>
     <string name="prompt_pelanggan">Pelanggan</string>
+    <string name="prompt_add">Tambahkan</string>
 
     <string name="placeholder_average">77.7</string>
     <string name="placeholder_rank">0</string>"

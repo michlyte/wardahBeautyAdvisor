@@ -162,6 +162,26 @@
             android:label="@string/title_activity_bp_main"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <!-- PELANGGAN -->
+        <activity
+            android:name=".screen.PelangganHistoryActivity"
+            android:label="@string/title_activity_riwayat_pelanggan"
+            android:parentActivityName=".screen.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".screen.MainActivity" />
+        </activity>
+        <activity
+            android:name=".screen.PelangganInputActivity"
+            android:label="@string/title_activity_input_pelanggan"
+            android:parentActivityName=".screen.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".screen.MainActivity" />
+        </activity>
+
+
     </application>
 
 </manifest>

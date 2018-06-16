@@ -25,6 +25,8 @@ import com.gghouse.wardah.wardahba.model.Notif;
 import com.gghouse.wardah.wardahba.model.Pagination;
 import com.gghouse.wardah.wardahba.screen.adapter.NotifAdapter;
 import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.OnLoadMoreListener;
+import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WardahTabInterface;
+import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WsMode;
 import com.gghouse.wardah.wardahba.util.WBALogger;
 import com.gghouse.wardah.wardahba.util.WBAPopUp;
 import com.gghouse.wardah.wardahba.util.WBASession;
@@ -41,7 +43,7 @@ import retrofit2.Response;
 
 import static com.gghouse.wardah.wardahba.common.WBAProperties.notificationSort;
 
-public class NotifFragment extends Fragment {
+public class NotifFragment extends Fragment implements WardahTabInterface {
 
     public static final String TAG = NotifFragment.class.getSimpleName();
 
@@ -89,7 +91,7 @@ public class NotifFragment extends Fragment {
                         mAdapter.notifyItemInserted(mAdapter.getItemCount() - 1);
                     }
                 });
-                ws_notifications(NotifMode.LOAD_MORE);
+                ws(WsMode.LOAD_MORE);
             }
         };
     }
@@ -110,7 +112,7 @@ public class NotifFragment extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ws_notifications(NotifMode.REFRESH);
+                ws(WsMode.REFRESH);
             }
         });
 
@@ -131,17 +133,18 @@ public class NotifFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ws_notifications(NotifMode.REFRESH);
+        ws(WsMode.REFRESH);
     }
 
-    private void ws_notifications(NotifMode notifMode) {
+    @Override
+    public void ws(WsMode wsMode) {
         Long userLocationId = WBASession.getUserLocationId();
         if (userLocationId == null) {
             WBASession.loggingOut(getActivity());
         } else {
             switch (WBAProperties.mode) {
                 case DUMMY_DEVELOPMENT:
-                    switch (notifMode) {
+                    switch (wsMode) {
                         case REFRESH:
                             if (!mSwipeRefreshLayout.isRefreshing()) {
                                 mDynamicBox.showLoadingLayout();
@@ -187,7 +190,7 @@ public class NotifFragment extends Fragment {
                     break;
                 case DEVELOPMENT:
                 case PRODUCTION:
-                    switch (notifMode) {
+                    switch (wsMode) {
                         case REFRESH:
                             if (!mSwipeRefreshLayout.isRefreshing()) {
                                 mDynamicBox.showLoadingLayout();
@@ -293,18 +296,13 @@ public class NotifFragment extends Fragment {
         }
     }
 
-    enum NotifMode {
-        REFRESH,
-        LOAD_MORE;
-    }
-
     /*
      * Broadcast
      */
     BroadcastReceiver brIncomingFCMMessage = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            ws_notifications(NotifMode.REFRESH);
+            ws(WsMode.REFRESH);
         }
     };
 

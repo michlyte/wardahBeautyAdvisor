@@ -33,6 +33,7 @@ import com.gghouse.wardah.wardahba.model.Sales;
 import com.gghouse.wardah.wardahba.screen.SalesHistoryActivity;
 import com.gghouse.wardah.wardahba.screen.SalesInputActivity;
 import com.gghouse.wardah.wardahba.screen.adapter.SalesAdapter;
+import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WardahTabInterface;
 import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WsMode;
 import com.gghouse.wardah.wardahba.util.WBALogger;
 import com.gghouse.wardah.wardahba.util.WBAPopUp;
@@ -52,7 +53,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SalesFragment extends Fragment implements View.OnClickListener {
+public class SalesFragment extends Fragment implements WardahTabInterface, View.OnClickListener {
 
     public static final String TAG = SalesFragment.class.getSimpleName();
 
@@ -113,7 +114,7 @@ public class SalesFragment extends Fragment implements View.OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                ws_salesFragment(WsMode.REFRESH);
+                ws(WsMode.REFRESH);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -155,7 +156,7 @@ public class SalesFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ws_salesFragment(WsMode.REFRESH);
+        ws(WsMode.REFRESH);
     }
 
     @Override
@@ -164,7 +165,7 @@ public class SalesFragment extends Fragment implements View.OnClickListener {
 
         if (WBASession.doesSalesNeedRefresh()) {
             WBASession.setSalesNeedRefresh(false);
-            ws_salesFragment(WsMode.REFRESH);
+            ws(WsMode.REFRESH);
         }
     }
 
@@ -174,7 +175,7 @@ public class SalesFragment extends Fragment implements View.OnClickListener {
 
         if (requestCode == SALES_INPUT_ACTIVITY || requestCode == QUESTIONER_ACTIVITY || requestCode == SALES_HISTORY_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
-                ws_salesFragment(WsMode.REFRESH);
+                ws(WsMode.REFRESH);
             }
         }
     }
@@ -389,7 +390,8 @@ public class SalesFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void ws_salesFragment(WsMode wsMode) {
+    @Override
+    public void ws(WsMode wsMode) {
         initViews();
 
         switch (WBAProperties.mode) {

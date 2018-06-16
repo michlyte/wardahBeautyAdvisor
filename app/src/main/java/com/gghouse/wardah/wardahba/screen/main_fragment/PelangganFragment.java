@@ -14,37 +14,44 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.gghouse.wardah.wardahba.R;
+import com.gghouse.wardah.wardahba.common.WBAImages;
+import com.gghouse.wardah.wardahba.common.WBAIntent;
 import com.gghouse.wardah.wardahba.common.WBAParams;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
 import com.gghouse.wardah.wardahba.dummy.PelangganSimpleDummy;
 import com.gghouse.wardah.wardahba.enumeration.SimpleAdapterTypeEnum;
+import com.gghouse.wardah.wardahba.enumeration.ViewMode;
 import com.gghouse.wardah.wardahba.model.Pelanggan;
+import com.gghouse.wardah.wardahba.screen.PelangganHistoryActivity;
+import com.gghouse.wardah.wardahba.screen.PelangganInputActivity;
+import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WardahTabInterface;
 import com.gghouse.wardah.wardahba.screen.adapter.WardahSimpleAdapter;
 import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WsMode;
-import com.gghouse.wardah.wardahba.util.WBALogger;
 import com.gghouse.wardah.wardahba.util.WBASession;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import mehdi.sakout.dynamicbox.DynamicBox;
 
-public class PelangganFragment extends Fragment implements View.OnClickListener {
+public class PelangganFragment extends Fragment implements WardahTabInterface, View.OnClickListener {
 
     public static final String TAG = PelangganFragment.class.getSimpleName();
 
-    static final int SALES_INPUT_ACTIVITY = 11;
-    static final int QUESTIONER_ACTIVITY = 12;
-    static final int SALES_HISTORY_ACTIVITY = 13;
+    static final int PELANGGAN_INPUT_ACTIVITY = 11;
+    //    static final int QUESTIONER_ACTIVITY = 12;
+    static final int PELANGGAN_HISTORY_ACTIVITY = 13;
 
-//    private FrameLayout mFlInputSales;
-//    private ImageView mIvImage;
-//    private Button mBInputSales;
+    //    private FrameLayout mFlInputSales;
+    private ImageView mIvImage;
+    private Button mBInputPelanggan;
 //
 //    private FrameLayout mFlSalesDone;
 //    private ImageView mIvImageDone;
@@ -95,7 +102,7 @@ public class PelangganFragment extends Fragment implements View.OnClickListener 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                ws_salesFragment(WsMode.REFRESH);
+                ws(WsMode.REFRESH);
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -107,6 +114,14 @@ public class PelangganFragment extends Fragment implements View.OnClickListener 
         View view = inflater.inflate(R.layout.screen_fragment_pelanggan, container, false);
 
 //        initContainerTopViews(view, inflater, container);
+        mIvImage = (ImageView) view.findViewById(R.id.iv_image);
+        Picasso.with(getContext())
+                .load(WBAImages.pelangganInput)
+                .fit()
+                .centerCrop()
+                .into(mIvImage);
+        mBInputPelanggan = (Button) view.findViewById(R.id.b_input_pelanggan);
+        mBInputPelanggan.setOnClickListener(this);
 
         mTVMore = (TextView) view.findViewById(R.id.tv_more);
         mIVMore = (ImageView) view.findViewById(R.id.iv_more);
@@ -137,7 +152,7 @@ public class PelangganFragment extends Fragment implements View.OnClickListener 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ws_salesFragment(WsMode.REFRESH);
+        ws(WsMode.REFRESH);
     }
 
     @Override
@@ -146,7 +161,7 @@ public class PelangganFragment extends Fragment implements View.OnClickListener 
 
         if (WBASession.doesSalesNeedRefresh()) {
             WBASession.setSalesNeedRefresh(false);
-            ws_salesFragment(WsMode.REFRESH);
+            ws(WsMode.REFRESH);
         }
     }
 
@@ -154,9 +169,9 @@ public class PelangganFragment extends Fragment implements View.OnClickListener 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == SALES_INPUT_ACTIVITY || requestCode == QUESTIONER_ACTIVITY || requestCode == SALES_HISTORY_ACTIVITY) {
+        if (requestCode == PELANGGAN_INPUT_ACTIVITY || requestCode == PELANGGAN_HISTORY_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
-                ws_salesFragment(WsMode.REFRESH);
+                ws(WsMode.REFRESH);
             }
         }
     }
@@ -166,11 +181,13 @@ public class PelangganFragment extends Fragment implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.tv_more:
             case R.id.iv_more:
-//                Intent iSalesHistory = new Intent(getContext(), SalesHistoryActivity.class);
-//                startActivityForResult(iSalesHistory, SALES_HISTORY_ACTIVITY);
+                Intent iPelangganHistory = new Intent(getContext(), PelangganHistoryActivity.class);
+                startActivityForResult(iPelangganHistory, PELANGGAN_HISTORY_ACTIVITY);
                 break;
             case R.id.b_input_pelanggan:
-                WBALogger.log(TAG, "Button input pelanggan is pressed.");
+                Intent iPelangganInput = new Intent(getContext(), PelangganInputActivity.class);
+                iPelangganInput.putExtra(WBAIntent.PELANGGAN, ViewMode.INPUT);
+                startActivityForResult(iPelangganInput, PELANGGAN_INPUT_ACTIVITY);
                 break;
         }
     }
@@ -242,9 +259,10 @@ public class PelangganFragment extends Fragment implements View.OnClickListener 
 //        mVLine.setVisibility(View.GONE);
 //    }
 
-    private void ws_salesFragment(WsMode wsMode) {
-//        initViews();
 
+    @Override
+    public void ws(WsMode wsMode) {
+//                initViews();
         switch (WBAProperties.mode) {
             case DUMMY_DEVELOPMENT:
                 mRecyclerView.setAdapter(null);
