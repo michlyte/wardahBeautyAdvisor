@@ -1,55 +1,27 @@
 package com.gghouse.wardah.wardahba.screen.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gghouse.wardah.wardahba.R;
-import com.gghouse.wardah.wardahba.common.WBAProperties;
 import com.gghouse.wardah.wardahba.model.Pelanggan;
 import com.gghouse.wardah.wardahba.screen.adapter.viewholder.LoadingViewHolder;
 import com.gghouse.wardah.wardahba.screen.adapter.viewholder.PelangganViewHolder;
-import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.OnLoadMoreListener;
 
 import java.util.List;
 
-public class PelangganHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PelangganHistoryAdapter extends WardahHistoryAdapter {
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
 
-    private OnLoadMoreListener mOnLoadMoreListener;
-    private boolean isLoading;
-    private int lastVisibleItem, totalItemCount;
-
-    private final Context mContext;
-    private final RecyclerView mRecyclerView;
     private List<Pelanggan> mDataSet;
 
     public PelangganHistoryAdapter(Context context, RecyclerView recyclerView, List<Pelanggan> dataSet) {
-        mContext = context;
-        mRecyclerView = recyclerView;
+        super(context, recyclerView);
         mDataSet = dataSet;
-
-        final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                totalItemCount = linearLayoutManager.getItemCount();
-                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-
-                if (!isLoading && totalItemCount <= (lastVisibleItem + WBAProperties.PELANGGAN_ITEM_PER_PAGE)) {
-                    if (mOnLoadMoreListener != null) {
-                        mOnLoadMoreListener.onLoadMore();
-                    }
-                    isLoading = true;
-                }
-            }
-        });
     }
 
     @Override
@@ -93,18 +65,6 @@ public class PelangganHistoryAdapter extends RecyclerView.Adapter<RecyclerView.V
         return mDataSet == null ? 0 : mDataSet.size();
     }
 
-    public void setLoaded() {
-        isLoading = false;
-    }
-
-    public void removeOnLoadMoreListener() {
-        this.mOnLoadMoreListener = null;
-    }
-
-    public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
-        this.mOnLoadMoreListener = mOnLoadMoreListener;
-    }
-
     public void add(Pelanggan pelanggan) {
         mDataSet.add(pelanggan);
     }
@@ -121,11 +81,7 @@ public class PelangganHistoryAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.mDataSet = dataSet;
     }
 
-    public Object getItem(int position) {
-        return mDataSet.get(position);
-    }
-
-    public List<?> getData() {
+    public List<Pelanggan> getData() {
         return mDataSet;
     }
 }

@@ -26,13 +26,14 @@ import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.common.WBAImages;
 import com.gghouse.wardah.wardahba.common.WBAParams;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
-import com.gghouse.wardah.wardahba.dummy.SalesDummy;
+import com.gghouse.wardah.wardahba.dummy.WardahDummy;
+import com.gghouse.wardah.wardahba.enumeration.SimpleAdapterTypeEnum;
 import com.gghouse.wardah.wardahba.model.IntentProductHighlight;
 import com.gghouse.wardah.wardahba.model.ProductHighlight;
 import com.gghouse.wardah.wardahba.model.Sales;
 import com.gghouse.wardah.wardahba.screen.SalesHistoryActivity;
 import com.gghouse.wardah.wardahba.screen.SalesInputActivity;
-import com.gghouse.wardah.wardahba.screen.adapter.SalesAdapter;
+import com.gghouse.wardah.wardahba.screen.adapter.WardahSimpleAdapter;
 import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WardahTabInterface;
 import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WsMode;
 import com.gghouse.wardah.wardahba.util.WBALogger;
@@ -76,7 +77,7 @@ public class SalesFragment extends Fragment implements WardahTabInterface, View.
     private View mVLine;
 
     private RecyclerView mRecyclerView;
-    private SalesAdapter mAdapter;
+    private WardahSimpleAdapter mAdapter;
     private List<Sales> mDataSet;
 
     /*
@@ -137,7 +138,7 @@ public class SalesFragment extends Fragment implements WardahTabInterface, View.
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new SalesAdapter(getContext(), mDataSet);
+        mAdapter = new WardahSimpleAdapter(getContext(), SimpleAdapterTypeEnum.SALES, mDataSet);
         mRecyclerView.setAdapter(mAdapter);
 
         mDynamicBox = new DynamicBox(getActivity(), mRecyclerView);
@@ -400,7 +401,7 @@ public class SalesFragment extends Fragment implements WardahTabInterface, View.
 
                 mRecyclerView.setAdapter(null);
                 mDataSet.clear();
-                mDataSet.addAll(SalesDummy.ITEMS);
+                mDataSet.addAll(WardahDummy.SALES_SIMPLE);
                 mAdapter.setData(mDataSet);
                 mRecyclerView.setAdapter(mAdapter);
                 break;

@@ -24,7 +24,7 @@ import com.gghouse.wardah.wardahba.common.WBAImages;
 import com.gghouse.wardah.wardahba.common.WBAIntent;
 import com.gghouse.wardah.wardahba.common.WBAParams;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
-import com.gghouse.wardah.wardahba.dummy.PelangganSimpleDummy;
+import com.gghouse.wardah.wardahba.dummy.WardahDummy;
 import com.gghouse.wardah.wardahba.enumeration.SimpleAdapterTypeEnum;
 import com.gghouse.wardah.wardahba.enumeration.ViewMode;
 import com.gghouse.wardah.wardahba.model.Pelanggan;
@@ -267,7 +267,7 @@ public class PelangganFragment extends Fragment implements WardahTabInterface, V
             case DUMMY_DEVELOPMENT:
                 mRecyclerView.setAdapter(null);
                 mDataSet.clear();
-                mDataSet.addAll(PelangganSimpleDummy.ITEMS);
+                mDataSet.addAll(WardahDummy.PELANGGAN_SIMPLE);
                 mAdapter.setData(mDataSet);
                 mRecyclerView.setAdapter(mAdapter);
                 break;

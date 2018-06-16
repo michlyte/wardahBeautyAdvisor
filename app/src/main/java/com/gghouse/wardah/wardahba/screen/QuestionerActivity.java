@@ -14,7 +14,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.common.WBAParams;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
-import com.gghouse.wardah.wardahba.dummy.QuestionerDummy;
+import com.gghouse.wardah.wardahba.dummy.WardahDummy;
 import com.gghouse.wardah.wardahba.model.Questioner;
 import com.gghouse.wardah.wardahba.screen.adapter.QuestionerAdapter;
 import com.gghouse.wardah.wardahba.util.WBALogger;
@@ -232,7 +232,7 @@ public class QuestionerActivity extends AppCompatActivity {
             case DUMMY_DEVELOPMENT:
                 mRecyclerView.setAdapter(null);
                 mDataSet.clear();
-                mDataSet.addAll(QuestionerDummy.ITEMS);
+                mDataSet.addAll(WardahDummy.QUESTIONER_SIMPLE);
                 mAdapter.setData(mDataSet);
                 mRecyclerView.setAdapter(mAdapter);
                 break;

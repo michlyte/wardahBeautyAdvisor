@@ -20,10 +20,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.gghouse.wardah.wardahba.dummy.WardahDummy;
 import com.gghouse.wardah.wardahba.screen.bp.BPMainActivity;
-import com.gghouse.wardah.wardahba.util.FileUtil;
 import com.gghouse.wardah.wardahba.R;
-import com.gghouse.wardah.wardahba.WardahApp;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
 import com.gghouse.wardah.wardahba.common.WBAUser;
 import com.gghouse.wardah.wardahba.enumeration.UserTypeEnum;
@@ -196,8 +195,8 @@ public class WelcomeActivity extends AppCompatActivity {
         } else {
             switch (WBAProperties.mode) {
                 case DUMMY_DEVELOPMENT:
-                    User user = WardahApp.getInstance().getGson().fromJson(FileUtil.Companion.loadJSONFileToString(R.raw.user), User.class);
-                    actionLogin(user);
+//                    User user = WardahApp.getInstance().getGson().fromJson(FileUtil.Companion.loadJSONFileToString(R.raw.user), User.class);
+                    actionLogin(WardahDummy.user);
                     break;
                 case DEVELOPMENT:
                 case PRODUCTION:

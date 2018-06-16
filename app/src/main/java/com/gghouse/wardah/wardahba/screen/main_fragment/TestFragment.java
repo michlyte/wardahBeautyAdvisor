@@ -26,14 +26,14 @@ import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.common.WBAImages;
 import com.gghouse.wardah.wardahba.common.WBAParams;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
-import com.gghouse.wardah.wardahba.dummy.TestDummy;
-import com.gghouse.wardah.wardahba.dummy.TestQuestionDummy;
+import com.gghouse.wardah.wardahba.dummy.WardahDummy;
+import com.gghouse.wardah.wardahba.enumeration.SimpleAdapterTypeEnum;
 import com.gghouse.wardah.wardahba.model.IntentQuestions;
 import com.gghouse.wardah.wardahba.model.Test;
 import com.gghouse.wardah.wardahba.screen.MainActivity;
 import com.gghouse.wardah.wardahba.screen.TestHistoryActivity;
 import com.gghouse.wardah.wardahba.screen.TestTakingActivity;
-import com.gghouse.wardah.wardahba.screen.adapter.TestAdapter;
+import com.gghouse.wardah.wardahba.screen.adapter.WardahSimpleAdapter;
 import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WardahTabInterface;
 import com.gghouse.wardah.wardahba.screen.main_fragment.interfaces.WsMode;
 import com.gghouse.wardah.wardahba.util.WBALogger;
@@ -79,7 +79,7 @@ public class TestFragment extends Fragment implements WardahTabInterface, View.O
     private View mVLine;
 
     private RecyclerView mRecyclerView;
-    private TestAdapter mAdapter;
+    private WardahSimpleAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private List<Test> mDataSet;
@@ -147,7 +147,7 @@ public class TestFragment extends Fragment implements WardahTabInterface, View.O
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new TestAdapter(mDataSet);
+        mAdapter = new WardahSimpleAdapter(getContext(), SimpleAdapterTypeEnum.TEST, mDataSet);
         mRecyclerView.setAdapter(mAdapter);
 
         mDynamicBox = new DynamicBox(getActivity(), mRecyclerView);
@@ -368,7 +368,7 @@ public class TestFragment extends Fragment implements WardahTabInterface, View.O
 
                 mRecyclerView.setAdapter(null);
                 mDataSet.clear();
-                mDataSet.addAll(TestDummy.ITEMS);
+                mDataSet.addAll(WardahDummy.TEST_SIMPLE);
                 mAdapter.setData(mDataSet);
                 mRecyclerView.setAdapter(mAdapter);
                 break;
@@ -397,7 +397,7 @@ public class TestFragment extends Fragment implements WardahTabInterface, View.O
         switch (WBAProperties.mode) {
             case DUMMY_DEVELOPMENT:
                 Intent iTestTaking = new Intent(getContext(), TestTakingActivity.class);
-                IntentQuestions intentQuestions = new IntentQuestions(TestQuestionDummy.ITEMS);
+                IntentQuestions intentQuestions = new IntentQuestions(WardahDummy.QUESTION_SIMPLE);
                 iTestTaking.putExtra(WBAParams.DATA, intentQuestions);
                 startActivityForResult(iTestTaking, TEST_TAKING_ACTIVITY);
                 mMaterialDialog.dismiss();

@@ -28,17 +28,11 @@ import java.util.Locale;
  * Created by michael on 5/4/2017.
  */
 
-public class SalesHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SalesHistoryAdapter extends WardahHistoryAdapter {
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
     private final int VIEW_TYPE_HEADER = 2;
 
-    private OnLoadMoreListener mOnLoadMoreListener;
-    private boolean isLoading;
-    private int lastVisibleItem, totalItemCount;
-
-    private Context mContext;
-    private RecyclerView mRecyclerView;
     private final boolean mHasHeader;
     private List<Sales> mDataSet;
 
@@ -48,8 +42,7 @@ public class SalesHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private SalesListener mSalesListener;
 
     public SalesHistoryAdapter(Context context, RecyclerView recyclerView, List<Sales> dataSet, boolean hasHeader, SalesListener salesListener) {
-        mContext = context;
-        mRecyclerView = recyclerView;
+        super(context, recyclerView);
         mDataSet = dataSet;
         mHasHeader = hasHeader;
 
@@ -59,24 +52,6 @@ public class SalesHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         formatter.setDecimalFormatSymbols(symbols);
 
         mSalesListener = salesListener;
-
-        final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                totalItemCount = linearLayoutManager.getItemCount();
-                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-
-                if (!isLoading && totalItemCount <= (lastVisibleItem + WBAProperties.SALES_ITEM_PER_PAGE)) {
-                    if (mOnLoadMoreListener != null) {
-                        mOnLoadMoreListener.onLoadMore();
-                    }
-                    isLoading = true;
-                }
-            }
-        });
     }
 
     @Override
@@ -175,18 +150,6 @@ public class SalesHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return mDataSet == null ? 0 : mDataSet.size();
     }
 
-    public void setLoaded() {
-        isLoading = false;
-    }
-
-    public void removeOnLoadMoreListener() {
-        this.mOnLoadMoreListener = null;
-    }
-
-    public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
-        this.mOnLoadMoreListener = mOnLoadMoreListener;
-    }
-
     public void add(Sales sales) {
         mDataSet.add(sales);
     }
@@ -201,10 +164,6 @@ public class SalesHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public void setData(List<Sales> dataSet) {
         this.mDataSet = dataSet;
-    }
-
-    public Sales getItem(int position) {
-        return mDataSet.get(position);
     }
 
     public void setHeaderData(SalesHistoryHeader salesHistoryHeader) {

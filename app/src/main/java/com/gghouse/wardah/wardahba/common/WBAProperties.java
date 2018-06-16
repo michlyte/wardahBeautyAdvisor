@@ -52,9 +52,7 @@ public interface WBAProperties {
     // Michael Halim : Properties
     int SPLASH_SCREEN_DELAY = 3000;
     int NOTIF_ITEM_PER_PAGE = 3;
-    int SALES_ITEM_PER_PAGE = 5;
-    int PELANGGAN_ITEM_PER_PAGE = 10;
-    int TEST_HISTORY_ITEM_PER_PAGE = 10;
+    int HISTORY_ITEM_PER_PAGE = 10;
 
     // Michael Halim : Validation
     boolean BYPASS_LOGIN_VALIDATION = false;

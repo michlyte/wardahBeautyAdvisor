@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
-import com.gghouse.wardah.wardahba.dummy.TestHistoryDummy;
+import com.gghouse.wardah.wardahba.dummy.WardahDummy;
 import com.gghouse.wardah.wardahba.model.Pagination;
 import com.gghouse.wardah.wardahba.model.Test;
 import com.gghouse.wardah.wardahba.model.TestHistoryHeader;
@@ -351,7 +351,7 @@ public class TestHistoryActivity extends AppCompatActivity implements DatePicker
                         mRecyclerView.setAdapter(null);
                         mAdapter.refreshData();
                         setTestHeaderValue(70.7, 7.5f, 8, false);
-                        mAdapter.addAll(TestHistoryDummy.ITEMS);
+                        mAdapter.addAll(WardahDummy.TEST_HISTORY);
                         mAdapter.setOnLoadMoreListener(mOnLoadMoreListener);
                         mRecyclerView.setAdapter(mAdapter);
                         mSwipeRefreshLayout.setRefreshing(false);
@@ -402,7 +402,7 @@ public class TestHistoryActivity extends AppCompatActivity implements DatePicker
 
                             ws_testHeader(userId);
 
-                            Call<TestListResponse> callTestList = ApiClient.getClient().apiTestList(userId, 0, WBAProperties.TEST_HISTORY_ITEM_PER_PAGE, beginDate, endDate);
+                            Call<TestListResponse> callTestList = ApiClient.getClient().apiTestList(userId, 0, WBAProperties.HISTORY_ITEM_PER_PAGE, beginDate, endDate);
                             callTestList.enqueue(new Callback<TestListResponse>() {
                                 @Override
                                 public void onResponse(Call<TestListResponse> call, Response<TestListResponse> response) {
@@ -455,7 +455,7 @@ public class TestHistoryActivity extends AppCompatActivity implements DatePicker
                             });
                             break;
                         case LOAD_MORE:
-                            Call<TestListResponse> callTestListLoadMore = ApiClient.getClient().apiTestList(userId, ++mPage, WBAProperties.TEST_HISTORY_ITEM_PER_PAGE, beginDate, endDate);
+                            Call<TestListResponse> callTestListLoadMore = ApiClient.getClient().apiTestList(userId, ++mPage, WBAProperties.HISTORY_ITEM_PER_PAGE, beginDate, endDate);
                             callTestListLoadMore.enqueue(new Callback<TestListResponse>() {
                                 @Override
                                 public void onResponse(Call<TestListResponse> call, Response<TestListResponse> response) {

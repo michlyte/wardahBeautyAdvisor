@@ -22,7 +22,7 @@ import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.common.WBAParams;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
-import com.gghouse.wardah.wardahba.dummy.SalesHistoryDummy;
+import com.gghouse.wardah.wardahba.dummy.WardahDummy;
 import com.gghouse.wardah.wardahba.model.IntentProductHighlight;
 import com.gghouse.wardah.wardahba.model.Pagination;
 import com.gghouse.wardah.wardahba.model.ProductHighlight;
@@ -53,25 +53,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SalesHistoryActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, SalesListener {
+public class SalesHistoryActivity extends WardahHistoryActivity implements SalesListener {
 
     public static final String TAG = SalesHistoryActivity.class.getSimpleName();
 
     static final int SALES_EDIT_ACTIVITY = 15;
 
-    private LinearLayout mLlFilter;
-    private TextView mTvFilter;
-    private Button mBReset;
-
     private RecyclerView mRecyclerView;
     private SalesHistoryAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private TextView mTvMessage;
-
-    /*
-     * Refresh
-     */
-    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     /*
      * Data Source and Pagination
@@ -82,33 +73,13 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
     private int mPage;
 
     /*
-     * Filters
-     */
-    private Drawable mDFilter;
-    private Date mDBegin;
-    private Date mDEnd;
-
-    /*
      * Loading view
      */
     private DynamicBox mDynamicBox;
 
-    /*
-     * Menu
-     */
-    private Menu mMenu;
-
-    /*
-     * Editable
-     */
-    private boolean mIsEdited;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.screen_history);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*
          * Dataset
@@ -127,17 +98,9 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
                         mAdapter.notifyItemInserted(mAdapter.getItemCount() - 1);
                     }
                 });
-                ws_sales(WsMode.LOAD_MORE);
+                ws(WsMode.LOAD_MORE);
             }
         };
-
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.srl_swipeRefreshLayout);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                ws_sales(WsMode.REFRESH);
-            }
-        });
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_list);
 
@@ -151,28 +114,6 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
         mRecyclerView.setAdapter(mAdapter);
 
         /*
-         * Filter
-         */
-        mLlFilter = (LinearLayout) findViewById(R.id.ll_filter);
-        mTvFilter = (TextView) findViewById(R.id.tv_filter);
-        mBReset = (Button) findViewById(R.id.b_reset);
-        mBReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDBegin = null;
-                mDEnd = null;
-
-                mMenu.findItem(R.id.action_filter).setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_filter));
-                mDFilter = mMenu.findItem(R.id.action_filter).getIcon();
-                mDFilter.setColorFilter(ContextCompat.getColor(getBaseContext(), android.R.color.white), PorterDuff.Mode.SRC_ATOP);
-
-                mLlFilter.setVisibility(View.GONE);
-
-                ws_sales(WsMode.REFRESH);
-            }
-        });
-
-        /*
          * Empty Message
          */
         mTvMessage = (TextView) findViewById(R.id.tv_message);
@@ -180,86 +121,9 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
         mDynamicBox = new DynamicBox(this, mRecyclerView);
 
         /*
-         * Editable
-         */
-        mIsEdited = false;
-
-        /*
          * Web services or Dummy
          */
-        ws_sales(WsMode.REFRESH);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        mMenu = menu;
-        getMenuInflater().inflate(R.menu.menu_sales_history, menu);
-        mDFilter = menu.findItem(R.id.action_filter).getIcon();
-        mDFilter.mutate();
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                if (mIsEdited) {
-                    setResult(Activity.RESULT_OK);
-                }
-                finish();
-                return true;
-            case R.id.action_filter:
-                Calendar cFrom = Calendar.getInstance();
-                cFrom.setTime((mDBegin == null ? new Date() : mDBegin));
-                Calendar cTo = Calendar.getInstance();
-                cTo.setTime((mDEnd == null ? new Date() : mDEnd));
-                DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        SalesHistoryActivity.this,
-                        cFrom.get(Calendar.YEAR),
-                        cFrom.get(Calendar.MONTH),
-                        cFrom.get(Calendar.DAY_OF_MONTH),
-                        cTo.get(Calendar.YEAR),
-                        cTo.get(Calendar.MONTH),
-                        cTo.get(Calendar.DAY_OF_MONTH)
-                );
-                dpd.show(getFragmentManager(), "Datepickerdialog");
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (mIsEdited) {
-            setResult(Activity.RESULT_OK);
-        }
-        finish();
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
-        try {
-            String from = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
-            String to = dayOfMonthEnd + "/" + (monthOfYearEnd + 1) + "/" + yearEnd;
-            mDBegin = WBAProperties.sdfFilter.parse(from);
-            mDEnd = WBAProperties.sdfFilter.parse(to);
-
-            /*
-             * Change filter icon color
-             */
-            mMenu.findItem(R.id.action_filter).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_filter_fill));
-            mDFilter = mMenu.findItem(R.id.action_filter).getIcon();
-            mDFilter.mutate();
-            mDFilter.setColorFilter(ContextCompat.getColor(this, android.R.color.white), PorterDuff.Mode.SRC_ATOP);
-
-            /*
-             * Refresh list based on filter
-             */
-
-            ws_sales(WsMode.REFRESH);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        ws(WsMode.REFRESH);
     }
 
     private void setSalesHeaderValue(Double average, Double countByMonth, Double count, Double highestPerMonth, boolean refresh) {
@@ -312,14 +176,14 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
         if (requestCode == SALES_EDIT_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
                 mIsEdited = true;
-                ws_sales(WsMode.REFRESH);
+                ws(WsMode.REFRESH);
             }
         }
     }
 
     /*
-         * Web services
-         */
+     * Web services
+     */
     private void ws_salesHeader(long userId) {
         Call<SalesAverageResponse> callSalesAverage = ApiClient.getClient().apiSalesAverage(userId);
         callSalesAverage.enqueue(new Callback<SalesAverageResponse>() {
@@ -422,7 +286,8 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
         });
     }
 
-    private void ws_sales(WsMode wsMode) {
+    @Override
+    protected void ws(WsMode wsMode) {
         switch (WBAProperties.mode) {
             case DUMMY_DEVELOPMENT:
                 switch (wsMode) {
@@ -432,7 +297,7 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
                         mRecyclerView.setAdapter(null);
                         mAdapter.refreshData();
                         setSalesHeaderValue(0.00, 0.00, 0.00, 0.00, false);
-                        mAdapter.addAll(SalesHistoryDummy.ITEMS);
+                        mAdapter.addAll(WardahDummy.SALES_HISTORY);
                         mAdapter.setOnLoadMoreListener(mOnLoadMoreListener);
                         mRecyclerView.setAdapter(mAdapter);
                         mSwipeRefreshLayout.setRefreshing(false);
@@ -483,7 +348,7 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
 
                             ws_salesHeader(userId);
 
-                            Call<SalesListResponse> callSalesList = ApiClient.getClient().apiSalesList(userId, 0, WBAProperties.SALES_ITEM_PER_PAGE, beginDate, endDate);
+                            Call<SalesListResponse> callSalesList = ApiClient.getClient().apiSalesList(userId, 0, WBAProperties.HISTORY_ITEM_PER_PAGE, beginDate, endDate);
                             callSalesList.enqueue(new Callback<SalesListResponse>() {
                                 @Override
                                 public void onResponse(Call<SalesListResponse> call, Response<SalesListResponse> response) {
@@ -499,16 +364,17 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
                                                 manageOnLoadMoreListener(salesListResponse.getPagination());
                                                 mRecyclerView.setAdapter(null);
                                                 mAdapter.refreshData();
-                                            /*
-                                             * Update sales history data
-                                             */
+                                                /*
+                                                 * Update sales history data
+                                                 */
                                                 mAdapter.addAll(salesListResponse.getData());
                                                 mRecyclerView.setAdapter(mAdapter);
                                                 mAdapter.notifyDataSetChanged();
 
                                                 // Filter
                                                 if (mDBegin != null && mDEnd != null) {
-                                                    mTvFilter.setText(WBAProperties.sdfFilter.format(mDBegin) + " - " + WBAProperties.sdfFilter.format(mDEnd));
+                                                    String dateStr = WBAProperties.sdfFilter.format(mDBegin) + " - " + WBAProperties.sdfFilter.format(mDEnd);
+                                                    mTvFilter.setText(dateStr);
                                                     mLlFilter.setVisibility(View.VISIBLE);
                                                 }
 
@@ -537,7 +403,7 @@ public class SalesHistoryActivity extends AppCompatActivity implements DatePicke
                             });
                             break;
                         case LOAD_MORE:
-                            Call<SalesListResponse> callSalesListLoadMore = ApiClient.getClient().apiSalesList(userId, ++mPage, WBAProperties.SALES_ITEM_PER_PAGE, beginDate, endDate);
+                            Call<SalesListResponse> callSalesListLoadMore = ApiClient.getClient().apiSalesList(userId, ++mPage, WBAProperties.HISTORY_ITEM_PER_PAGE, beginDate, endDate);
                             callSalesListLoadMore.enqueue(new Callback<SalesListResponse>() {
                                 @Override
                                 public void onResponse(Call<SalesListResponse> call, Response<SalesListResponse> response) {

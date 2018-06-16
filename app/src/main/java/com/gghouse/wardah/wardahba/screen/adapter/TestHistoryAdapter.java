@@ -24,17 +24,11 @@ import java.util.List;
  * Created by michael on 5/4/2017.
  */
 
-public class TestHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TestHistoryAdapter extends WardahHistoryAdapter {
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
     private final int VIEW_TYPE_HEADER = 2;
 
-    private OnLoadMoreListener mOnLoadMoreListener;
-    private boolean isLoading;
-    private int lastVisibleItem, totalItemCount;
-
-    private Context mContext;
-    private RecyclerView mRecyclerView;
     private final boolean mHasHeader;
     private List<Test> mDataSet;
 
@@ -44,30 +38,11 @@ public class TestHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private DecimalFormat formatter;
 
     public TestHistoryAdapter(Context context, RecyclerView recyclerView, List<Test> dataSet, boolean hasHeader) {
-        mContext = context;
-        mRecyclerView = recyclerView;
+        super(context, recyclerView);
         mDataSet = dataSet;
         mHasHeader = hasHeader;
 
         formatter = new DecimalFormat("#0.0%");
-
-        final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                totalItemCount = linearLayoutManager.getItemCount();
-                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-
-                if (!isLoading && totalItemCount <= (lastVisibleItem + WBAProperties.SALES_ITEM_PER_PAGE)) {
-                    if (mOnLoadMoreListener != null) {
-                        mOnLoadMoreListener.onLoadMore();
-                    }
-                    isLoading = true;
-                }
-            }
-        });
     }
 
     @Override
@@ -141,18 +116,6 @@ public class TestHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return mDataSet == null ? 0 : mDataSet.size();
     }
 
-    public void setLoaded() {
-        isLoading = false;
-    }
-
-    public void removeOnLoadMoreListener() {
-        this.mOnLoadMoreListener = null;
-    }
-
-    public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
-        this.mOnLoadMoreListener = mOnLoadMoreListener;
-    }
-
     public void add(Test test) {
         mDataSet.add(test);
     }
@@ -167,10 +130,6 @@ public class TestHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void setData(List<Test> dataSet) {
         this.mDataSet = dataSet;
-    }
-
-    public Test getItem(int position) {
-        return mDataSet.get(position);
     }
 
     public void setHeaderData(TestHistoryHeader testHistoryHeader) {
