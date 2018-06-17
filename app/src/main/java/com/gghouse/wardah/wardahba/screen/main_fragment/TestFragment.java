@@ -30,7 +30,7 @@ import com.gghouse.wardah.wardahba.dummy.WardahDummy;
 import com.gghouse.wardah.wardahba.enumeration.SimpleAdapterTypeEnum;
 import com.gghouse.wardah.wardahba.model.IntentQuestions;
 import com.gghouse.wardah.wardahba.model.Test;
-import com.gghouse.wardah.wardahba.screen.MainActivity;
+import com.gghouse.wardah.wardahba.screen.main_activity.MainActivity;
 import com.gghouse.wardah.wardahba.screen.TestHistoryActivity;
 import com.gghouse.wardah.wardahba.screen.TestTakingActivity;
 import com.gghouse.wardah.wardahba.screen.adapter.WardahSimpleAdapter;

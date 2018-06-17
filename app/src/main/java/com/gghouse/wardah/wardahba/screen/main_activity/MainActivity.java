@@ -1,4 +1,4 @@
-package com.gghouse.wardah.wardahba.screen;
+package com.gghouse.wardah.wardahba.screen.main_activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,7 +27,12 @@ import com.gghouse.wardah.wardahba.common.WBAProperties;
 import com.gghouse.wardah.wardahba.enumeration.MainEnum;
 import com.gghouse.wardah.wardahba.model.IntentProductHighlight;
 import com.gghouse.wardah.wardahba.model.IntentQuestions;
-import com.gghouse.wardah.wardahba.model.Pelanggan;
+import com.gghouse.wardah.wardahba.screen.ChangePasswordActivity;
+import com.gghouse.wardah.wardahba.screen.ProfileActivity;
+import com.gghouse.wardah.wardahba.screen.QuestionerActivity;
+import com.gghouse.wardah.wardahba.screen.SalesInputActivity;
+import com.gghouse.wardah.wardahba.screen.TestTakingActivity;
+import com.gghouse.wardah.wardahba.screen.WelcomeActivity;
 import com.gghouse.wardah.wardahba.screen.main_fragment.NotifFragment;
 import com.gghouse.wardah.wardahba.screen.main_fragment.PelangganFragment;
 import com.gghouse.wardah.wardahba.screen.main_fragment.SalesFragment;

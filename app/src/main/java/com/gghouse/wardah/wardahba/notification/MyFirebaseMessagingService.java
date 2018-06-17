@@ -13,7 +13,7 @@ import android.util.Log;
 import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.WardahApp;
 import com.gghouse.wardah.wardahba.common.WBAIntent;
-import com.gghouse.wardah.wardahba.screen.MainActivity;
+import com.gghouse.wardah.wardahba.screen.main_activity.MainActivity;
 import com.gghouse.wardah.wardahba.util.WBASession;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;

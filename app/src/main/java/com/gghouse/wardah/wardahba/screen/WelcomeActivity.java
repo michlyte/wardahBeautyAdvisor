@@ -21,12 +21,14 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.gghouse.wardah.wardahba.dummy.WardahDummy;
-import com.gghouse.wardah.wardahba.screen.bp.BPMainActivity;
+import com.gghouse.wardah.wardahba.screen.main_activity.BPLMainActivity;
+import com.gghouse.wardah.wardahba.screen.main_activity.BPMainActivity;
 import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
 import com.gghouse.wardah.wardahba.common.WBAUser;
 import com.gghouse.wardah.wardahba.enumeration.UserTypeEnum;
 import com.gghouse.wardah.wardahba.model.User;
+import com.gghouse.wardah.wardahba.screen.main_activity.MainActivity;
 import com.gghouse.wardah.wardahba.util.WBALogger;
 import com.gghouse.wardah.wardahba.util.WBAPopUp;
 import com.gghouse.wardah.wardahba.util.WBASession;
@@ -195,7 +197,6 @@ public class WelcomeActivity extends AppCompatActivity {
         } else {
             switch (WBAProperties.mode) {
                 case DUMMY_DEVELOPMENT:
-//                    User user = WardahApp.getInstance().getGson().fromJson(FileUtil.Companion.loadJSONFileToString(R.raw.user), User.class);
                     actionLogin(WardahDummy.user);
                     break;
                 case DEVELOPMENT:
@@ -249,20 +250,21 @@ public class WelcomeActivity extends AppCompatActivity {
 
             WBASession.loggingIn(user);
 
+            Intent intent = null;
             switch (userTypeEnum) {
                 case BEAUTY_ADVISOR:
+                    intent = new Intent(getBaseContext(), MainActivity.class);
+                    break;
                 case BEAUTY_PROMOTER:
-                    Intent intent = new Intent(getBaseContext(), BPMainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    intent = new Intent(getBaseContext(), BPMainActivity.class);
                     break;
                 case FIELD_CONTROLLER:
                 case BEAUTY_PROMOTER_LEADER:
-                    intent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    intent = new Intent(getBaseContext(), BPLMainActivity.class);
                     break;
             }
+            startActivity(intent);
+            finish();
         } catch (IllegalArgumentException iae) {
             Log.e(this.getClass().getSimpleName(), iae.getMessage());
         }

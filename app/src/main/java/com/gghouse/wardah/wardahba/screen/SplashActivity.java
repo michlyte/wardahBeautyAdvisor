@@ -7,8 +7,9 @@ import android.os.Handler;
 
 import com.gghouse.wardah.wardahba.common.WBAProperties;
 import com.gghouse.wardah.wardahba.enumeration.UserTypeEnum;
-import com.gghouse.wardah.wardahba.model.User;
-import com.gghouse.wardah.wardahba.screen.bp.BPMainActivity;
+import com.gghouse.wardah.wardahba.screen.main_activity.BPLMainActivity;
+import com.gghouse.wardah.wardahba.screen.main_activity.BPMainActivity;
+import com.gghouse.wardah.wardahba.screen.main_activity.MainActivity;
 import com.gghouse.wardah.wardahba.util.WBALogger;
 import com.gghouse.wardah.wardahba.util.WBASession;
 import com.gghouse.wardah.wardahba.webservices.ApiClient;
@@ -41,6 +42,9 @@ public class SplashActivity extends Activity {
                         switch (userTypeEnum) {
                             case BEAUTY_PROMOTER:
                                 intent = new Intent(getBaseContext(), BPMainActivity.class);
+                                break;
+                            case BEAUTY_PROMOTER_LEADER:
+                                intent = new Intent(getBaseContext(), BPLMainActivity.class);
                                 break;
                             default:
                                 intent = new Intent(getBaseContext(), MainActivity.class);

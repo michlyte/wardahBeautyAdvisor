@@ -3,6 +3,7 @@
     <!-- Activity's Titles -->
     <string name="title_activity_main">Beauty Advisor</string>
     <string name="title_activity_bp_main">Beauty Promotor</string>
+    <string name="title_activity_bpl_main">Beauty Promotor Leader</string>
     <string name="title_activity_sales">Sales</string>
     <string name="title_activity_test">Tes</string>
     <string name="title_activity_sales_history">Riwayat Sales</string>
@@ -64,6 +65,8 @@
     <string name="prompt_simpan">Simpan</string>
     <string name="prompt_pelanggan">Pelanggan</string>
     <string name="prompt_add">Tambahkan</string>
+    <string name="prompt_info">Info</string>
+    <string name="prompt_event">Event</string>
 
     <string name="placeholder_average">77.7</string>
     <string name="placeholder_rank">0</string>"
@@ -170,4 +173,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Calendar -->
+    <string name="title_activity_calendar">Wardah Calendar</string>
+    <string name="calendar_item_new_count">%d条</string>
+    <string-array name="week">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
 </resources>

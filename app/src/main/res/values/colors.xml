@@ -24,6 +24,9 @@
 
     <color name="colorEditable">#3358b6c0</color>
 
+    <!-- Calendar -->
+    <color name="Bg_Calendar_ListView_Header">#e9e9e9</color>
+
 </resources>
 
     <!--100% — FF-->

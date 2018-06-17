@@ -44,13 +44,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity
-            android:name=".screen.MainActivity"
+            android:name=".screen.main_activity.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -62,34 +62,34 @@
             android:name=".screen.TestTakingActivity"
             android:label="@string/title_activity_test"
             android:launchMode="singleTop"
-            android:parentActivityName=".screen.MainActivity">
+            android:parentActivityName=".screen.main_activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".screen.MainActivity" />
+                android:value=".screen.main_activity.MainActivity" />
         </activity>
         <activity
             android:name=".screen.TestHistoryActivity"
             android:label="@string/title_activity_test_history"
-            android:parentActivityName=".screen.MainActivity">
+            android:parentActivityName=".screen.main_activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".screen.MainActivity" />
+                android:value=".screen.main_activity.MainActivity" />
         </activity>
         <activity
             android:name=".screen.SalesInputActivity"
             android:label="@string/title_activity_sales"
-            android:parentActivityName=".screen.MainActivity">
+            android:parentActivityName=".screen.main_activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".screen.MainActivity" />
+                android:value=".screen.main_activity.MainActivity" />
         </activity>
         <activity
             android:name=".screen.SalesHistoryActivity"
             android:label="@string/title_activity_sales_history"
-            android:parentActivityName=".screen.MainActivity">
+            android:parentActivityName=".screen.main_activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".screen.MainActivity" />
+                android:value=".screen.main_activity.MainActivity" />
         </activity>
         <activity
             android:name=".screen.QuestionerActivity"
@@ -97,18 +97,18 @@
         <activity
             android:name=".screen.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:parentActivityName=".screen.MainActivity">
+            android:parentActivityName=".screen.main_activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".screen.MainActivity" />
+                android:value=".screen.main_activity.MainActivity" />
         </activity>
         <activity
             android:name=".screen.ChangePasswordActivity"
             android:label="@string/title_activity_change_password"
-            android:parentActivityName=".screen.MainActivity">
+            android:parentActivityName=".screen.main_activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".screen.MainActivity" />
+                android:value=".screen.main_activity.MainActivity" />
         </activity>
 
         <!-- <activity -->
@@ -149,38 +149,54 @@
 
         <activity
             android:name=".screen.event.SelectEventLocationActivity"
-            android:label="@string/title_activity_pin_point_event"></activity>
+            android:label="@string/title_activity_pin_point_event" />
 
         <!-- EVENT -->
         <activity
             android:name=".screen.event.CreateEventActivity"
-            android:label="@string/title_activity_create_event"></activity>
+            android:label="@string/title_activity_create_event" />
 
         <!-- Beauty Promotor -->
         <activity
-            android:name=".screen.bp.BPMainActivity"
+            android:name=".screen.main_activity.BPMainActivity"
             android:label="@string/title_activity_bp_main"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- PELANGGAN -->
         <activity
             android:name=".screen.PelangganHistoryActivity"
             android:label="@string/title_activity_riwayat_pelanggan"
-            android:parentActivityName=".screen.MainActivity">
+            android:parentActivityName=".screen.main_activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".screen.MainActivity" />
+                android:value=".screen.main_activity.MainActivity" />
         </activity>
         <activity
             android:name=".screen.PelangganInputActivity"
             android:label="@string/title_activity_input_pelanggan"
-            android:parentActivityName=".screen.MainActivity">
+            android:parentActivityName=".screen.main_activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".screen.MainActivity" />
+                android:value=".screen.main_activity.MainActivity" />
         </activity>
 
+        <activity
+            android:name=".screen.main_activity.BPLMainActivity"
+            android:label="@string/title_activity_bpl_main"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Calendar Activity -->
+        <activity
+            android:name=".screen.calendar.CalendarActivity"
+            android:label="@string/title_activity_calendar"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
     </application>
 

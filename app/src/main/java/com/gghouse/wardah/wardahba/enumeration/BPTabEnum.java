@@ -1,24 +1,17 @@
 package com.gghouse.wardah.wardahba.enumeration;
 
-import android.support.v4.content.ContextCompat;
-
 import com.gghouse.wardah.wardahba.R;
 
-/**
- * Created by michaelhalim on 1/31/17.
- */
-
-public enum MainEnum {
-    NOTIF(0, "NOTIF", R.string.prompt_notif),
-    SALES(1, "PENJUALAN", R.string.prompt_sales),
-    TEST(2, "TES", R.string.prompt_tes),
-    PELANGGAN(3, "PELANGGAN", R.string.prompt_pelanggan);
+public enum BPTabEnum {
+    INFO(0, "INFO", R.string.prompt_info),
+    EVENT(1, "EVENT", R.string.prompt_event),
+    TEST(2, "TES", R.string.prompt_tes);
 
     private Integer id;
     private String title;
     private Integer titleInt;
 
-    MainEnum(Integer id, String title, Integer titleInt) {
+    BPTabEnum(Integer id, String title, Integer titleInt) {
         this.id = id;
         this.title = title;
         this.titleInt = titleInt;
@@ -48,10 +41,10 @@ public enum MainEnum {
         this.titleInt = titleInt;
     }
 
-    public static MainEnum getMainEnumById(int id) {
-        for (MainEnum mainEnum : MainEnum.values()) {
-            if (mainEnum.getId() == id) {
-                return mainEnum;
+    public static BPTabEnum getBPTabEnumById(int id) {
+        for (BPTabEnum bpTabEnum : BPTabEnum.values()) {
+            if (bpTabEnum.getId() == id) {
+                return bpTabEnum;
             }
         }
         return null;

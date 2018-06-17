@@ -1,17 +1,12 @@
-package com.gghouse.wardah.wardahba.screen.bp;
+package com.gghouse.wardah.wardahba.screen.main_activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.common.WBAParams;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
-import com.gghouse.wardah.wardahba.enumeration.MainEnum;
+import com.gghouse.wardah.wardahba.enumeration.LockingDialogTypeEnum;
 import com.gghouse.wardah.wardahba.model.IntentProductHighlight;
 import com.gghouse.wardah.wardahba.model.IntentQuestions;
 import com.gghouse.wardah.wardahba.screen.ChangePasswordActivity;
@@ -33,9 +28,6 @@ import com.gghouse.wardah.wardahba.screen.QuestionerActivity;
 import com.gghouse.wardah.wardahba.screen.SalesInputActivity;
 import com.gghouse.wardah.wardahba.screen.TestTakingActivity;
 import com.gghouse.wardah.wardahba.screen.WelcomeActivity;
-import com.gghouse.wardah.wardahba.screen.main_fragment.NotifFragment;
-import com.gghouse.wardah.wardahba.screen.main_fragment.SalesFragment;
-import com.gghouse.wardah.wardahba.screen.main_fragment.TestFragment;
 import com.gghouse.wardah.wardahba.util.WBALogger;
 import com.gghouse.wardah.wardahba.util.WBAPopUp;
 import com.gghouse.wardah.wardahba.util.WBASession;
@@ -45,7 +37,6 @@ import com.gghouse.wardah.wardahba.webservices.response.LockingResponse;
 import com.gghouse.wardah.wardahba.webservices.response.ProfileResponse;
 import com.gghouse.wardah.wardahba.webservices.response.SalesProductResponse;
 import com.gghouse.wardah.wardahba.webservices.response.TestQuestionsResponse;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.Date;
 
@@ -53,39 +44,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BPMainActivity extends AppCompatActivity {
+public class WardahMainActivity extends AppCompatActivity {
 
-    public static final String TAG = BPMainActivity.class.getSimpleName();
+    public static final String TAG = WardahMainActivity.class.getSimpleName();
 
     public static final int LOCK_INPUT_SALES = 20;
     public static final int LOCK_QUESTIONER = 21;
     public static final int LOCK_TEST = 22;
-
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    private ViewPager mViewPager;
 
     private Lock mLock;
     private MaterialDialog mLockingDialog;
     private MaterialDialog mLoading;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bpmain);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
 
         // Loading
         MaterialDialog.Builder builder = new MaterialDialog.Builder(this)
@@ -150,8 +123,8 @@ public class BPMainActivity extends AppCompatActivity {
         public PlaceholderFragment() {
         }
 
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static BPMainActivity.PlaceholderFragment newInstance(int sectionNumber) {
+            BPMainActivity.PlaceholderFragment fragment = new BPMainActivity.PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
@@ -168,95 +141,37 @@ public class BPMainActivity extends AppCompatActivity {
         }
     }
 
-    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (MainEnum.getMainEnumById(position)) {
-                case NOTIF:
-                    return NotifFragment.newInstance();
-                case TEST:
-                    return TestFragment.newInstance();
-                case SALES:
-                    return SalesFragment.newInstance();
-                default:
-                    return PlaceholderFragment.newInstance(position + 1);
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return MainEnum.values().length;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return getResources().getString(MainEnum.getMainEnumById(position).getTitleInt());
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        switch (WBAProperties.mode) {
-            case DUMMY_DEVELOPMENT:
-            case DEVELOPMENT:
-                /*
-                 * RegId
-                 */
-                Log.d(TAG, "REG ID: " + FirebaseInstanceId.getInstance().getToken());
-                break;
-        }
-
-        ws_checkLocking(true);
-    }
-
-    private DialogType getDialogType(Lock lock) {
+    /**
+     * Check Locking Dialog Type
+     */
+    private LockingDialogTypeEnum getDialogType(Lock lock) {
         switch (lock.getInputSales()) {
             case WBAParams.Locked:
-                return DialogType.SALES;
+                return LockingDialogTypeEnum.SALES;
             default:
                 break;
         }
 
         switch (lock.getInputTest()) {
             case WBAParams.Locked:
-                return DialogType.TEST;
+                return LockingDialogTypeEnum.TEST;
             default:
                 break;
         }
 
         switch (lock.getInputQuestionnaire()) {
             case WBAParams.Locked:
-                return DialogType.QUESTIONER;
+                return LockingDialogTypeEnum.QUESTIONER;
             default:
                 break;
         }
 
-        return DialogType.SAFE;
+        return LockingDialogTypeEnum.SAFE;
     }
 
-    private void directLocking(final long userId, final Lock lock) {
-        switch (getDialogType(lock)) {
-            case SALES:
-                ws_salesProductHighlight(userId, lock.getSalesDateLong());
-                break;
-            case TEST:
-                ws_testQuestions(userId, lock.getTestDateLong());
-                break;
-            case QUESTIONER:
-                Intent iQuestioner = new Intent(getApplicationContext(), QuestionerActivity.class);
-                iQuestioner.putExtra(WBAParams.DATE, lock.getQuestionnaireDateLong());
-                startActivityForResult(iQuestioner, LOCK_QUESTIONER);
-                break;
-        }
-    }
-
+    /**
+     * Locking Dialogs
+     */
     private void showLockingDialog(final long userId, final Lock lock) {
         if (mLockingDialog != null) {
             mLockingDialog.dismiss();
@@ -318,18 +233,26 @@ public class BPMainActivity extends AppCompatActivity {
         }
     }
 
-    private enum DialogType {
-        SALES,
-        TEST,
-        QUESTIONER,
-        SAFE
+    private void directLocking(final long userId, final Lock lock) {
+        switch (getDialogType(lock)) {
+            case SALES:
+                ws_salesProductHighlight(userId, lock.getSalesDateLong());
+                break;
+            case TEST:
+                ws_testQuestions(userId, lock.getTestDateLong());
+                break;
+            case QUESTIONER:
+                Intent iQuestioner = new Intent(getApplicationContext(), QuestionerActivity.class);
+                iQuestioner.putExtra(WBAParams.DATE, lock.getQuestionnaireDateLong());
+                startActivityForResult(iQuestioner, LOCK_QUESTIONER);
+                break;
+        }
     }
 
-    /*
+    /**
      * Web Services
      */
-
-    private void ws_checkLocking(final boolean withDialog) {
+    protected void ws_checkLocking(final boolean withDialog) {
         switch (WBAProperties.mode) {
             case DEVELOPMENT:
             case PRODUCTION:
