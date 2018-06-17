@@ -36,8 +36,10 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.okhttp:okhttp:2.5.0'
-    // Cosmos Calendar
+    // Calendar
     implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
+    implementation 'com.riontech:calendar:1.0'
+    implementation 'jp.co.recruit_mp:LightCalendarView:1.0.1'
     // Android
     implementation 'com.android.support:appcompat-v7:25.3.1'
     implementation 'com.android.support:recyclerview-v7:25.3.1'

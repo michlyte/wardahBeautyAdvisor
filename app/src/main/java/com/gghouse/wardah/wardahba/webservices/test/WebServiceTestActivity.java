@@ -1,4 +1,4 @@
-package com.gghouse.wardah.wardahba.test;
+package com.gghouse.wardah.wardahba.webservices.test;
 
 import android.app.Activity;
 import android.os.Bundle;

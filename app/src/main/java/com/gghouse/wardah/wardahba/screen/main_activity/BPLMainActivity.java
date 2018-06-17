@@ -13,7 +13,7 @@ import android.util.Log;
 import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
 import com.gghouse.wardah.wardahba.enumeration.BPLTabEnum;
-import com.gghouse.wardah.wardahba.screen.main_fragment.EventFragment;
+import com.gghouse.wardah.wardahba.screen.main_fragment.EventLightCalendarFragment;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class BPLMainActivity extends WardahMainActivity {
@@ -56,7 +56,7 @@ public class BPLMainActivity extends WardahMainActivity {
         public Fragment getItem(int position) {
             switch (BPLTabEnum.getBPLTabEnumById(position)) {
                 case EVENT:
-                    return EventFragment.newInstance();
+                    return EventLightCalendarFragment.newInstance();
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
