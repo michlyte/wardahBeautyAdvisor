@@ -9,11 +9,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 
 import com.gghouse.wardah.wardahba.R;
 import com.gghouse.wardah.wardahba.common.WBAProperties;
 import com.gghouse.wardah.wardahba.enumeration.BPLTabEnum;
+import com.gghouse.wardah.wardahba.screen.main_fragment.EventFragment;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 public class BPLMainActivity extends WardahMainActivity {
@@ -55,6 +55,8 @@ public class BPLMainActivity extends WardahMainActivity {
         @Override
         public Fragment getItem(int position) {
             switch (BPLTabEnum.getBPLTabEnumById(position)) {
+                case EVENT:
+                    return EventFragment.newInstance();
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
