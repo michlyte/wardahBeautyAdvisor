@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_sales_input"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingTop="8dp"
     tools:context="com.gghouse.wardah.wardahba.screen.SalesInputActivity">
 
     <android.support.v4.widget.NestedScrollView
@@ -23,10 +24,12 @@
                 android:id="@+id/tv_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
                 android:text="@string/placeholder_sales_input_date"
-                android:textSize="14sp" />
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"
@@ -36,7 +39,8 @@
                 style="@style/WBA.TextView.SalesInput.SectionHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_sales_amount" />
+                android:text="@string/title_sales_amount"
+                android:textStyle="bold|italic" />
 
             <EditText
                 android:id="@+id/et_ASI_sales"
@@ -44,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:hint="nominal"
+                android:hint="@string/hint_nominal"
                 android:inputType="numberDecimal"
                 android:maxLines="1" />
 
@@ -56,6 +60,124 @@
                 android:text="@string/message_sales_input_zero"
                 android:textSize="10sp" />
 
+            <TextView
+                android:id="@+id/tvOnceADayContent"
+                style="@style/WBA.TextView.SalesInput.SectionHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/title_sales_once_a_day_content"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
+                android:id="@+id/llOnceADayContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvPcs"
+                            style="@style/WBA.TextView.Form.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/title_sales_pcs" />
+
+                        <EditText
+                            android:id="@+id/etPcs"
+                            style="@style/WBA.EditText.Form.Number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:hint="@string/placeholder_value_zero" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvVisitor"
+                            style="@style/WBA.TextView.Form.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/title_sales_visitor" />
+
+                        <EditText
+                            android:id="@+id/etVisitor"
+                            style="@style/WBA.EditText.Form.Number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:hint="@string/placeholder_value_zero" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvBill"
+                            style="@style/WBA.TextView.Form.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/title_sales_bill" />
+
+                        <EditText
+                            android:id="@+id/etBill"
+                            style="@style/WBA.EditText.Form.Number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:hint="@string/placeholder_value_zero" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.xw.repo.BubbleSeekBar
+                    android:id="@+id/bsbBuyingPower"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:bsb_always_show_bubble="false"
+                    app:bsb_auto_adjust_section_mark="true"
+                    app:bsb_bubble_color="@color/colorPrimary"
+                    app:bsb_bubble_text_color="@color/colorPrimaryDark"
+                    app:bsb_hide_bubble="true"
+                    app:bsb_is_float_type="false"
+                    app:bsb_max="4"
+                    app:bsb_min="0"
+                    app:bsb_progress="0"
+                    app:bsb_second_track_color="@color/colorPrimary"
+                    app:bsb_section_count="4"
+                    app:bsb_section_text_position="below_section_mark"
+                    app:bsb_seek_by_section="true"
+                    app:bsb_touch_to_seek="true"
+                    app:bsb_track_color="@color/colorAccent" />
+
+            </LinearLayout>
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="10dp" />
@@ -65,7 +187,8 @@
                 style="@style/WBA.TextView.SalesInput.SectionHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_sales_product_highlight" />
+                android:text="@string/title_sales_product_highlight"
+                android:textStyle="bold|italic" />
 
             <Space
                 android:layout_width="match_parent"

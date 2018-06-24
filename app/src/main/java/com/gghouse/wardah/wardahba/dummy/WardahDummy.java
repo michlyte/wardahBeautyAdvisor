@@ -55,7 +55,7 @@ public class WardahDummy {
         location.setCity("Bandung");
         location.setProvince("Jawa Barat");
         user.setLocation(location);
-        user.setUserType(UserTypeEnum.BEAUTY_PROMOTER_LEADER.toString());
+        user.setUserType(UserTypeEnum.BEAUTY_ADVISOR.toString());
 
         SALES_HISTORY.add(new SalesHistoryHeader());
 

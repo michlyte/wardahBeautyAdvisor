@@ -40,6 +40,8 @@ dependencies {
     implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
     implementation 'com.riontech:calendar:1.0'
     implementation 'jp.co.recruit_mp:LightCalendarView:1.0.1'
+    // Seek bar for sales input buying power
+    implementation 'com.xw.repo:bubbleseekbar:3.16-lite'
     // Android
     implementation 'com.android.support:appcompat-v7:25.3.1'
     implementation 'com.android.support:recyclerview-v7:25.3.1'

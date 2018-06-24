@@ -83,6 +83,8 @@
     <string name="placeholder_location">Lokasi</string>
     <string name="placeholder_people">Anggota</string>
     <string name="placeholder_event_category">Kategori</string>
+    <string name="placeholder_value_zero">0</string>
+    <string name="hint_nominal">Nominal</string>
 
     <string name="title_average">Rata-rata</string>
     <string name="title_rank">Peringkat</string>
@@ -120,6 +122,10 @@
     <string name="title_active">Aktif</string>
     <string name="title_non_active">Berakhir: %1$s</string>
     <string name="title_today">Today</string>
+    <string name="title_sales_pcs">Jmlh barang</string>
+    <string name="title_sales_visitor">Jmlh pengunjung</string>
+    <string name="title_sales_bill">Jmlh nota</string>
+    <string name="title_sales_once_a_day_content">Konten 1x isi per hari</string>
 
     <string name="message_common_cancel">Semua data akan hilang jika Anda kembali. Apakah Anda yakin?</string>
     <string name="message_test_required">Anda belum mengisi test pada %1$s</string>
@@ -171,7 +177,6 @@
     <string name="error_field_negative">Nilai harus >= 0</string>
     <string name="error_field_invalid">Field tidak valid.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Calendar -->

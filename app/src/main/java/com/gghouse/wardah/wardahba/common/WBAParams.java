@@ -10,6 +10,7 @@ public interface WBAParams {
     String LOCK = "LOCK";
     String EDIT = "EDIT";
     String SALES = "SALES";
+    String SALES_IS_READ_ONLY = "SIRO";
 
     String Locked = "Locked";
 

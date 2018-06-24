@@ -164,6 +164,12 @@
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
+    <style name="WBA.TextView.Form" />
+
+    <style name="WBA.TextView.Form.Title">
+        <item name="android:textSize">11sp</item>
+    </style>
+
     <style name="WBA.TextView.SalesInput" />
 
     <style name="WBA.TextView.SalesInput.SectionHeader">
@@ -191,6 +197,8 @@
 
     <style name="WBA.EditText" />
 
+    <style name="WBA.EditText.Form" />
+
     <style name="WBA.EditText.ChangePassword">
         <item name="android:maxLines">1</item>
         <item name="android:inputType">textPassword</item>
@@ -198,6 +206,14 @@
         <item name="android:focusableInTouchMode">true</item>
         <item name="android:imeOptions">actionNext</item>
         <item name="android:minHeight">0dp</item>
+    </style>
+
+    <style name="WBA.EditText.Form.Number">
+        <item name="android:textSize">15sp</item>
+        <item name="android:inputType">number</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:ems">3</item>
     </style>
 
     <style name="WBA.RadioButton" parent="android:Widget.CompoundButton.RadioButton" />
